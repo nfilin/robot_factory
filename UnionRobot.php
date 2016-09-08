@@ -16,10 +16,10 @@ class UnionRobot extends Robot implements Iterator
         if (is_array($input)) { // if input is array of Robot's
             foreach ($input as $id => $robot) {
                 if (is_object($robot) && $robot instanceof Robot)
-                    $data[] = $robot;
+                    $this->robots[] = $robot;
             }
         } elseif (is_object($input) && $input instanceof Robot) { // if input is a robot
-            $data[] = $input;
+            $this->robots[] = $input;
         }
         /** Reset clear cache for speed, weight and height calculations */
         $this->speed = null;
