@@ -17,6 +17,7 @@ class Factory
         if (substr($name, 0, 6) == "create" && (array_key_exists($class = substr($name, 6), $this->types))) {
             $result = [];
             for ($i = $arguments[0]; $i > 0; --$i) {
+                /** Create copy of required robot and put it to resulting array*/
                 $result[] = clone($this->types[$class]);
             }
             return $result;
@@ -31,7 +32,8 @@ class Factory
     public function addType(Robot $robot)
     {
         $class = get_class($robot);
-        $this->types[$class] = $robot;
+        /** Store robot objects indexed by ClassName */
+        $this->types[$class] = clone($robot);
     }
 
 }
