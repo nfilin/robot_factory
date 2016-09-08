@@ -14,10 +14,10 @@ class Factory
      */
     function __call($name, $arguments)
     {
-        if (substr($name, 0, 6) == "create" && (array_key_exists($class = substr($name, 6), $this->types))) {
+        if (substr($name, 0, 6) == "create" && (array_key_exists($class = substr($name, 6), $this->types))) { // Check if it is a creation method and required Robot object is added to factory
             $result = [];
             for ($i = $arguments[0]; $i > 0; --$i) {
-                /** Create copy of required robot and put it to resulting array*/
+                /** Create copy of required robot and put it to resulting array */
                 $result[] = clone($this->types[$class]);
             }
             return $result;
